@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "theyara",
+  "version": "${version}",
+  "name": "The Yara",
+  "description": "The best mod ever",
+  "authors": [
+    "TheCuddlyBear"
+  ],
+  "contributors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/theyara/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.thecuddlybear.theyara.TheYara"
+    ],
+    "client": [],
+    "server": []
+  },
+  "mixins": [
+    "theyara.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "fabric": "*"
+  }
+}
