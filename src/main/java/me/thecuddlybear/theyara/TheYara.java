@@ -24,7 +24,7 @@ public class TheYara implements ModInitializer {
 
     // Yara Creative Tab
     public static final ItemGroup YARA_GROUP = FabricItemGroupBuilder.create(
-                    new Identifier("theyara", "general"))
+                    new Identifier(MOD_ID, "general"))
             .icon(() -> new ItemStack(Items.BOWL))
             .build();
 
@@ -39,11 +39,11 @@ public class TheYara implements ModInitializer {
     public void onInitialize() {
         log(Level.INFO, "Initializing");
         //TODO: Initializer
-        Registry.register(Registry.ITEM, new Identifier("theyara", "yara_sword"), YARA_SWORD);
-        Registry.register(Registry.ITEM, new Identifier("theyara", "yara_shovel"), YARA_SHOVEL);
-        Registry.register(Registry.ITEM, new Identifier("theyara", "yara_pickaxe"), YARA_PICKAXE);
-        Registry.register(Registry.ITEM, new Identifier("theyara", "yara_axe"), YARA_AXE);
-        Registry.register(Registry.ITEM, new Identifier("theyara", "yara_hoe"), YARA_HOE);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_sword"), YARA_SWORD);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_shovel"), YARA_SHOVEL);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_pickaxe"), YARA_PICKAXE);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_axe"), YARA_AXE);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_hoe"), YARA_HOE);
     }
 
     public static void log(Level level, String message){
