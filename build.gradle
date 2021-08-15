@@ -13,6 +13,13 @@ group = project.maven_group
 minecraft {
 }
 
+repositories {
+	maven {
+		url = "http://maven.kyrptonaught.dev"
+		allowInsecureProtocol = true
+	}
+}
+
 dependencies {
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -20,6 +27,9 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	modImplementation 'net.kyrptonaught:customportalapi:0.0.1-beta32-1.17'
+	include 'net.kyrptonaught:customportalapi:0.0.1-beta32-1.17'
 }
 
 processResources {

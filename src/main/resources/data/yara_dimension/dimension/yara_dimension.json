@@ -1,0 +1,13 @@
+{
+  "type": "yara_dimension:yara_dimension_type",
+  "generator": {
+    "type": "minecraft:noise",
+    "seed": -1464245863,
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "seed": -1464245863,
+      "biome": "minecraft:plains"
+    },
+    "settings": "minecraft:floating_islands"
+  }
+}
