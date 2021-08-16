@@ -7,8 +7,12 @@ import me.thecuddlybear.theyara.items.YaraPickaxe;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.Material;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -29,12 +33,15 @@ public class TheYara implements ModInitializer {
             .icon(() -> new ItemStack(Items.BOWL))
             .build();
 
-    // Yara Tools
+    // Yara Tools & Materials
     public static ToolItem YARA_SWORD = new SwordItem(YaraIngotToolMaterial.INSTANCE, 9, -2.4F, new Item.Settings().group(YARA_GROUP));
     public static ToolItem YARA_SHOVEL = new ShovelItem(YaraIngotToolMaterial.INSTANCE, 6, -3.0F, new Item.Settings().group(YARA_GROUP));
     public static ToolItem YARA_PICKAXE = new YaraPickaxe(YaraIngotToolMaterial.INSTANCE, 6, -2.8F, new Item.Settings().group(YARA_GROUP));
     public static ToolItem YARA_AXE = new YaraAxe(YaraIngotToolMaterial.INSTANCE, 10, -3.2F, new Item.Settings().group(YARA_GROUP));
     public static ToolItem YARA_HOE = new YaraHoe(YaraIngotToolMaterial.INSTANCE, 7, -3.2F, new Item.Settings().group(YARA_GROUP));
+    public static Item YARA_INGOT = new Item(new FabricItemSettings().group(YARA_GROUP));
+    public static final Block YARA_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(3.5f));
+    public static final Block YARA_INGOT_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).strength(1.0f));
 
     @Override
     public void onInitialize() {
@@ -45,6 +52,11 @@ public class TheYara implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_pickaxe"), YARA_PICKAXE);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_axe"), YARA_AXE);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_hoe"), YARA_HOE);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_ingot"), YARA_INGOT);
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "yara_ore"), YARA_ORE);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_ore"), new BlockItem(YARA_ORE, new FabricItemSettings().group(YARA_GROUP)));
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "yara_ingot_block"), YARA_INGOT_BLOCK);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_ingot_block"), new BlockItem(YARA_INGOT_BLOCK, new FabricItemSettings().group(YARA_GROUP)));
         CustomPortalApiRegistry.addPortal(Blocks.GOLD_BLOCK, new Identifier("yara_dimension", "yara_dimension"), 234, 183, 8);
     }
 

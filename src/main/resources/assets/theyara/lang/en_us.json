@@ -1,5 +1,9 @@
 {
   "itemGroup.theyara.general": "The Yara",
   "item.theyara.yara_sword": "Yara Sword",
-  "item.theyara.yara_pickaxe": "Yara Pickaxe"
+  "item.theyara.yara_pickaxe": "Yara Pickaxe",
+  "item.theyara.yara_shovel": "Yara Shovel",
+  "item.theyara.yara_axe": "Yara Axe",
+  "item.theyara.yara_hoe": "Yara Hoe",
+  "item.theyara.yara_ingot": "Yara Ingot"
 }

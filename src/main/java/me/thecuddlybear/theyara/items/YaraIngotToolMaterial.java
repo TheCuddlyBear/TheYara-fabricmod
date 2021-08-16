@@ -1,5 +1,6 @@
 package me.thecuddlybear.theyara.items;
 
+import me.thecuddlybear.theyara.TheYara;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 
@@ -14,7 +15,7 @@ public class YaraIngotToolMaterial implements ToolMaterial {
 
     @Override
     public float getMiningSpeedMultiplier() {
-        return 8.0F;
+        return 10.0F;
     }
 
     @Override
@@ -24,7 +25,7 @@ public class YaraIngotToolMaterial implements ToolMaterial {
 
     @Override
     public int getMiningLevel() {
-        return 4;
+        return 6;
     }
 
     @Override
@@ -34,6 +35,6 @@ public class YaraIngotToolMaterial implements ToolMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return null;
+        return Ingredient.ofItems(TheYara.YARA_INGOT);
     }
 }

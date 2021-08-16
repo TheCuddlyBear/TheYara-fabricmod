@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "theyara:block/yara_ore" }
+  }
+}
