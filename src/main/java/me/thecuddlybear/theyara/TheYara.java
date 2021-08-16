@@ -52,6 +52,7 @@ public class TheYara implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_pickaxe"), YARA_PICKAXE);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_axe"), YARA_AXE);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_hoe"), YARA_HOE);
+        //TODO: Make yara tool recipes, make raw yara ingot, add smelting recipe for yara ingot, add deepslate yara ore.
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_ingot"), YARA_INGOT);
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "yara_ore"), YARA_ORE);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_ore"), new BlockItem(YARA_ORE, new FabricItemSettings().group(YARA_GROUP)));
