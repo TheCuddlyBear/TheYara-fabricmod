@@ -1,5 +1,6 @@
 package me.thecuddlybear.theyara;
 
+import me.thecuddlybear.theyara.entity.ShroomieEntity;
 import me.thecuddlybear.theyara.items.YaraAxe;
 import me.thecuddlybear.theyara.items.YaraHoe;
 import me.thecuddlybear.theyara.items.YaraIngotToolMaterial;
@@ -9,10 +10,15 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.kyrptonaught.customportalapi.CustomPortalApiRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.Material;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -43,6 +49,13 @@ public class TheYara implements ModInitializer {
     public static final Block YARA_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(3.5f));
     public static final Block YARA_INGOT_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).strength(1.0f));
 
+    //Shroomie
+    public static final EntityType<ShroomieEntity> SHROOMIE = Registry.register(
+            Registry.ENTITY_TYPE,
+            new Identifier("theyara", "shroomie"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, ShroomieEntity::new).dimensions(EntityDimensions.fixed(0.75f, 0.75f)).build()
+    );
+
     @Override
     public void onInitialize() {
         log(Level.INFO, "Initializing");
@@ -59,6 +72,8 @@ public class TheYara implements ModInitializer {
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "yara_ingot_block"), YARA_INGOT_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_ingot_block"), new BlockItem(YARA_INGOT_BLOCK, new FabricItemSettings().group(YARA_GROUP)));
         CustomPortalApiRegistry.addPortal(Blocks.GOLD_BLOCK, new Identifier("yara_dimension", "yara_dimension"), 234, 183, 8);
+        FabricDefaultAttributeRegistry.register(SHROOMIE, ShroomieEntity.createMobAttributes());
+
     }
 
     public static void log(Level level, String message){

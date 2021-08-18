@@ -16,7 +16,9 @@
     "main": [
       "me.thecuddlybear.theyara.TheYara"
     ],
-    "client": [],
+    "client": [
+      "me.thecuddlybear.theyara.TheYaraClient"
+    ],
     "server": []
   },
   "mixins": [
