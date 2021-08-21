@@ -72,8 +72,7 @@ public class TheYara implements ModInitializer {
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "yara_ingot_block"), YARA_INGOT_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_ingot_block"), new BlockItem(YARA_INGOT_BLOCK, new FabricItemSettings().group(YARA_GROUP)));
         CustomPortalApiRegistry.addPortal(Blocks.GOLD_BLOCK, new Identifier("yara_dimension", "yara_dimension"), 234, 183, 8);
-        FabricDefaultAttributeRegistry.register(SHROOMIE, ShroomieEntity.createMobAttributes());
-
+        FabricDefaultAttributeRegistry.register(SHROOMIE, ShroomieEntity.createShroomieAttributes());
     }
 
     public static void log(Level level, String message){
