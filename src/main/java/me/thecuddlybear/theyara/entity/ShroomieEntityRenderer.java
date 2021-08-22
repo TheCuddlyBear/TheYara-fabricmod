@@ -4,16 +4,13 @@ import me.thecuddlybear.theyara.TheYaraClient;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
+import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;
 
-public class ShroomieEntityRenderer extends MobEntityRenderer<ShroomieEntity, ShroomieEntityModel> {
+public class ShroomieEntityRenderer extends GeoEntityRenderer<ShroomieEntity> {
 
     public ShroomieEntityRenderer(EntityRendererFactory.Context context){
-        super(context, new ShroomieEntityModel(context.getPart(TheYaraClient.MODEL_CUBE_LAYER)), 0.5f);
+        super(context, new ShroomieEntityModel());
     }
 
-    @Override
-    public Identifier getTexture(ShroomieEntity entity){
-        return new Identifier("theyara", "textures/entity/shroomie/shroomie.png");
-    }
 
 }

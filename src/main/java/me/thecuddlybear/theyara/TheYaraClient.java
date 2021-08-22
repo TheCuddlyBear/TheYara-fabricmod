@@ -1,11 +1,9 @@
 package me.thecuddlybear.theyara;
 
-import me.thecuddlybear.theyara.entity.ShroomieEntityModel;
 import me.thecuddlybear.theyara.entity.ShroomieEntityRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.util.Identifier;
@@ -20,7 +18,6 @@ public class TheYaraClient implements ClientModInitializer {
         EntityRendererRegistry.INSTANCE.register(TheYara.SHROOMIE, (context) -> {
             return new ShroomieEntityRenderer(context);
         });
-        EntityModelLayerRegistry.registerModelLayer(MODEL_CUBE_LAYER, ShroomieEntityModel::getTexturedModelData);
     }
 
 }
