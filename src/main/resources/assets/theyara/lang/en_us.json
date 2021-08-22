@@ -1,11 +1,12 @@
 {
   "itemGroup.theyara.general": "The Yara",
-  "item.theyara.yara_sword": "Yara Sword",
-  "item.theyara.yara_pickaxe": "Yara Pickaxe",
-  "item.theyara.yara_shovel": "Yara Shovel",
-  "item.theyara.yara_axe": "Yara Axe",
-  "item.theyara.yara_hoe": "Yara Hoe",
-  "item.theyara.yara_ingot": "Yara Ingot",
-  "item.theyara.yara_ore": "Yara Ore",
-  "item.theeyara.yara_ingot_block": "Yara Block"
+  "item.theyara.yara_sword": "Yarathyst Sword",
+  "item.theyara.yara_pickaxe": "Yarathyst Pickaxe",
+  "item.theyara.yara_shovel": "Yarathyst Shovel",
+  "item.theyara.yara_axe": "Yarathyst Axe",
+  "item.theyara.yara_hoe": "Yarathyst Hoe",
+  "item.theyara.yara_ingot": "Yarathyst Ingot",
+  "item.theyara.yara_ore": "Yarathyst Ore",
+  "item.theyara.shroomie_spawn_egg": "Shroomie Spawn Egg",
+  "block.theyara.yara_ingot_block": "Yarathyst Block"
 }
