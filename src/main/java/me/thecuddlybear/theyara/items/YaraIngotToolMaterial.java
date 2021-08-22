@@ -3,6 +3,9 @@ package me.thecuddlybear.theyara.items;
 import me.thecuddlybear.theyara.TheYara;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
+import me.thecuddlybear.theyara.util.RegistryHandler;
+
+import static me.thecuddlybear.theyara.util.RegistryHandler.YARA_INGOT;
 
 public class YaraIngotToolMaterial implements ToolMaterial {
 
@@ -35,6 +38,6 @@ public class YaraIngotToolMaterial implements ToolMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(TheYara.YARA_INGOT);
+        return Ingredient.ofItems(YARA_INGOT);
     }
 }
