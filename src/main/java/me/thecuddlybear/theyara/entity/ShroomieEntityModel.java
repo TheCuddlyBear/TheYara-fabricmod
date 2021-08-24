@@ -16,15 +16,9 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class ShroomieEntityModel extends AnimatedGeoModel {
 
-
-    @Override
-    public void setLivingAnimations(Object o, Integer integer, AnimationEvent animationEvent) {
-
-    }
-
     @Override
     public Identifier getModelLocation(Object object) {
-        return new Identifier("theyara", "geo/shroomieentitymodel.geo.json");
+        return new Identifier("theyara", "geo/shroomie.geo.json");
     }
 
     @Override
@@ -34,6 +28,6 @@ public class ShroomieEntityModel extends AnimatedGeoModel {
 
     @Override
     public Identifier getAnimationFileLocation(Object animatable) {
-        return new Identifier("theyara", "animations/shroomieentitymodel.animation.json");
+        return new Identifier("theyara", "animations/shroomie.animation.json");
     }
 }
