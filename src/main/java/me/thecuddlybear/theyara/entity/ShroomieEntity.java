@@ -114,6 +114,10 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
+        if(this.isInSittingPose()){
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.shroomie.sit", true));
+            return PlayState.CONTINUE;
+        }
         if(event.isMoving()){
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.shroomie.walk", true));
             return PlayState.CONTINUE;
@@ -145,8 +149,10 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
                     return ActionResult.SUCCESS;
                 }else if(this.isSitting()){
                     this.setSitting(false);
+                    this.setInSittingPose(false);
                 }else{
                     this.setSitting(true);
+                    this.setInSittingPose(true);
                 }
 
                 /*if (!(item instanceof DyeItem)) {

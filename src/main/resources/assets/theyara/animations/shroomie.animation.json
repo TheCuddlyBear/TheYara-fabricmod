@@ -46,6 +46,46 @@
 					}
 				}
 			}
+		},
+		"animation.shroomie.sit": {
+			"loop": true,
+			"animation_length": 0.04167,
+			"bones": {
+				"body": {
+					"position": {
+						"vector": [0, -1, 0]
+					}
+				},
+				"leftarm": {
+					"position": {
+						"vector": [0, -1, 0]
+					}
+				},
+				"rightarm": {
+					"position": {
+						"vector": [0, -1, 0]
+					}
+				},
+				"rightleg": {
+					"rotation": {
+						"vector": [-180, 0, 0]
+					},
+					"position": {
+						"vector": [0, -1, -2.5]
+					},
+					"scale": {
+						"vector": [1, 1, 0.5]
+					}
+				},
+				"leftleg": {
+					"position": {
+						"vector": [0, 0, -2.5]
+					},
+					"scale": {
+						"vector": [1, 1, 0.5]
+					}
+				}
+			}
 		}
 	}
 }
