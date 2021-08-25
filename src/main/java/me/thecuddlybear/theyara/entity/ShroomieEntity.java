@@ -125,7 +125,7 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
     @Override
     protected void initDataTracker() {
         super.initDataTracker();
-        this.dataTracker.startTracking(SHROOMIE_TYPE, 1);
+        this.dataTracker.startTracking(SHROOMIE_TYPE, 0);
     }
 
     public static Builder createShroomieAttributes() {
