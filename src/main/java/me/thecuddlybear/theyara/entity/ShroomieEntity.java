@@ -1,14 +1,14 @@
 package me.thecuddlybear.theyara.entity;
 
+import com.google.common.collect.Maps;
 import me.thecuddlybear.theyara.TheYara;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer.Builder;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,17 +17,18 @@ import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TimeHelper;
+import net.minecraft.util.*;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import net.minecraft.world.gen.feature.StructureFeature;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -37,6 +38,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+import java.util.Map;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -44,6 +46,11 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
 
     private final AnimationFactory factory = new AnimationFactory(this);
     public static final Predicate<LivingEntity> FOLLOW_TAMED_PREDICATE;
+    public static final int RED_TYPE = 0;
+    public static final int BLUE_TYPE = 1;
+    public static final int GREEN_TYPE = 2;
+    public static final Map<Integer, Identifier> TEXTURES;
+    private static final TrackedData<Integer> SHROOMIE_TYPE;
 
     public ShroomieEntity(EntityType<? extends TameableEntity> entityType, World world){
         super(entityType, world);
@@ -51,11 +58,33 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
         this.ignoreCameraFrustum = true;
     }
 
+    public int getShroomieType() {
+        return (Integer)this.dataTracker.get(SHROOMIE_TYPE);
+    }
+
+    public void setShroomieType(int type) {
+        if (type < 0 || type >= 11) {
+            type = this.random.nextInt(10);
+        }
+
+        this.dataTracker.set(SHROOMIE_TYPE, type);
+    }
+
+    public Identifier getTexture() {
+        return (Identifier)TEXTURES.getOrDefault(this.getShroomieType(), (Identifier)TEXTURES.get(0));
+    }
+
     static {
         FOLLOW_TAMED_PREDICATE = (entity) -> {
             EntityType<?> entityType = entity.getType();
             return entityType == EntityType.SHEEP || entityType == EntityType.RABBIT || entityType == EntityType.FOX;
         };
+        SHROOMIE_TYPE = DataTracker.registerData(ShroomieEntity.class, TrackedDataHandlerRegistry.INTEGER);
+        TEXTURES = (Map)Util.make(Maps.newHashMap(), (map) -> {
+            map.put(0, new Identifier("theyara", "textures/entity/shroomie/shroomie_0.png"));
+            map.put(1, new Identifier("theyara", "textures/entity/shroomie/shroomie_1.png"));
+            map.put(2, new Identifier("theyara", "textures/entity/shroomie/shroomie_1.png"));
+        });
     }
 
     @Override
@@ -67,6 +96,36 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
         this.goalSelector.add(2, new SitGoal(this));
         this.targetSelector.add(5, new FollowTargetIfTamedGoal(this, AnimalEntity.class, false, FOLLOW_TAMED_PREDICATE));
         this.targetSelector.add(6, new FollowTargetIfTamedGoal(this, TurtleEntity.class, false, TurtleEntity.BABY_TURTLE_ON_LAND_FILTER));
+    }
+
+    @Override
+    @Nullable
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+        entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+        if (world.getMoonSize() > 0.9F) {
+            this.setShroomieType(this.random.nextInt(2));
+        } else {
+            this.setShroomieType(this.random.nextInt(2));
+        }
+        return entityData;
+    }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putInt("ShroomieType", this.getShroomieType());
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        this.setShroomieType(nbt.getInt("ShroomieType"));
+    }
+
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(SHROOMIE_TYPE, 1);
     }
 
     public static Builder createShroomieAttributes() {
@@ -107,6 +166,14 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
         if (uUID != null) {
             shroomieEntity.setOwnerUuid(uUID);
             shroomieEntity.setTamed(true);
+        }
+
+        if (entity instanceof CatEntity) {
+            if (this.random.nextBoolean()) {
+                shroomieEntity.setShroomieType(this.getShroomieType());
+            } else {
+                shroomieEntity.setShroomieType(((ShroomieEntity)entity).getShroomieType());
+            }
         }
 
         return shroomieEntity;

@@ -52,6 +52,7 @@ public class TheYara implements ModInitializer {
         //TODO: Make yara tool recipes, make raw yara ingot, add smelting recipe for yara ingot, add deepslate yara ore.
         RegistryHandler.registerItem();
         RegistryHandler.registerBlocks();
+        RegistryHandler.registerArmor();
 
         CustomPortalApiRegistry.addPortal(Blocks.GOLD_BLOCK, new Identifier("yara_dimension", "yara_dimension"), 234, 183, 8);
         FabricDefaultAttributeRegistry.register(SHROOMIE, ShroomieEntity.createShroomieAttributes());

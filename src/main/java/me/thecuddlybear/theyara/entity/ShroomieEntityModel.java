@@ -5,6 +5,7 @@
 package me.thecuddlybear.theyara.entity;
 
 import com.google.common.collect.ImmutableList;
+import me.thecuddlybear.theyara.util.utils;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
@@ -14,20 +15,21 @@ import net.minecraft.util.Identifier;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
-public class ShroomieEntityModel extends AnimatedGeoModel {
+public class ShroomieEntityModel extends AnimatedGeoModel<ShroomieEntity> {
 
     @Override
-    public Identifier getModelLocation(Object object) {
+    public Identifier getModelLocation(ShroomieEntity object) {
         return new Identifier("theyara", "geo/shroomie.geo.json");
     }
 
     @Override
-    public Identifier getTextureLocation(Object object) {
-        return new Identifier("theyara", "textures/entity/shroomie/shroomie.png");
+    public Identifier getTextureLocation(ShroomieEntity object) {
+        return object.getTexture();
     }
 
+
     @Override
-    public Identifier getAnimationFileLocation(Object animatable) {
+    public Identifier getAnimationFileLocation(ShroomieEntity animatable) {
         return new Identifier("theyara", "animations/shroomie.animation.json");
     }
 }

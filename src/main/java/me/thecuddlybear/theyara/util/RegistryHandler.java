@@ -5,11 +5,13 @@ import me.thecuddlybear.theyara.items.YaraAxe;
 import me.thecuddlybear.theyara.items.YaraHoe;
 import me.thecuddlybear.theyara.items.YaraIngotToolMaterial;
 import me.thecuddlybear.theyara.items.YaraPickaxe;
+import me.thecuddlybear.theyara.items.armor.YaraIngotArmorMaterial;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -25,8 +27,15 @@ public class RegistryHandler {
     public static ToolItem YARA_AXE = new YaraAxe(YaraIngotToolMaterial.INSTANCE, 10, -3.2F, new Item.Settings().group(YARA_GROUP));
     public static ToolItem YARA_HOE = new YaraHoe(YaraIngotToolMaterial.INSTANCE, 7, -3.2F, new Item.Settings().group(YARA_GROUP));
 
+    //Yarathyst Armor
+    public static final ArmorMaterial YARATHYST_ARMOR_MATERIAL = new YaraIngotArmorMaterial();
+    public static final Item YARATHYST_HELMET = new ArmorItem(YARATHYST_ARMOR_MATERIAL, EquipmentSlot.HEAD, new Item.Settings().group(YARA_GROUP));
+    public static final Item YARATHYST_CHESTPLATE = new ArmorItem(YARATHYST_ARMOR_MATERIAL, EquipmentSlot.CHEST, new Item.Settings().group(YARA_GROUP));
+    public static final Item YARATHYST_LEGGINGS = new ArmorItem(YARATHYST_ARMOR_MATERIAL, EquipmentSlot.LEGS, new Item.Settings().group(YARA_GROUP));
+    public static final Item YARATHYST_BOOTS = new ArmorItem(YARATHYST_ARMOR_MATERIAL, EquipmentSlot.FEET, new Item.Settings().group(YARA_GROUP));
+
     //Yarathyst
-    public static Item YARA_INGOT = new Item(new FabricItemSettings().group(YARA_GROUP));
+    public static final Item YARA_INGOT = new Item(new FabricItemSettings().group(YARA_GROUP));
     public static final Block YARA_ORE = new Block(FabricBlockSettings.of(Material.STONE).strength(3.5f));
     public static final Block YARA_INGOT_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).strength(1.0f));
 
@@ -45,13 +54,21 @@ public class RegistryHandler {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_ingot_block"), new BlockItem(YARA_INGOT_BLOCK, new FabricItemSettings().group(YARA_GROUP)));
     }
 
+    public static void registerArmor(){
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_helmet"), YARATHYST_HELMET);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_chestplate"), YARATHYST_CHESTPLATE);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_leggings"), YARATHYST_LEGGINGS);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "yara_boots"), YARATHYST_BOOTS);
+    }
+
     public static void registerBlocks(){
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "yara_ore"), YARA_ORE);
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "yara_ingot_block"), YARA_INGOT_BLOCK);
     }
 
+    /*
     public static void registerSounds(){
 
-    }
+    }*/
 
 }
