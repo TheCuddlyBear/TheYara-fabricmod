@@ -49,6 +49,8 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
     public static final int RED_TYPE = 0;
     public static final int BLUE_TYPE = 1;
     public static final int GREEN_TYPE = 2;
+    public static final int PURPLE_TYPE = 3;
+    public static final int PINK_TYPE = 4;
     public static final Map<Integer, Identifier> TEXTURES;
     private static final TrackedData<Integer> SHROOMIE_TYPE;
 
@@ -63,8 +65,8 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
     }
 
     public void setShroomieType(int type) {
-        if (type < 0 || type >= 11) {
-            type = this.random.nextInt(10);
+        if (type < 0 || type >= 5) {
+            type = this.random.nextInt(5);
         }
 
         this.dataTracker.set(SHROOMIE_TYPE, type);
@@ -83,7 +85,9 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
         TEXTURES = (Map)Util.make(Maps.newHashMap(), (map) -> {
             map.put(0, new Identifier("theyara", "textures/entity/shroomie/shroomie_0.png"));
             map.put(1, new Identifier("theyara", "textures/entity/shroomie/shroomie_1.png"));
-            map.put(2, new Identifier("theyara", "textures/entity/shroomie/shroomie_1.png"));
+            map.put(2, new Identifier("theyara", "textures/entity/shroomie/shroomie_2.png"));
+            map.put(3, new Identifier("theyara", "textures/entity/shroomie/shroomie_3.png"));
+            map.put(4, new Identifier("theyara", "textures/entity/shroomie/shroomie_4.png"));
         });
     }
 
@@ -103,9 +107,9 @@ public class ShroomieEntity extends TameableEntity implements IAnimatable {
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
         entityData = super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
         if (world.getMoonSize() > 0.9F) {
-            this.setShroomieType(this.random.nextInt(2));
+            this.setShroomieType(this.random.nextInt(5));
         } else {
-            this.setShroomieType(this.random.nextInt(2));
+            this.setShroomieType(this.random.nextInt(5));
         }
         return entityData;
     }
